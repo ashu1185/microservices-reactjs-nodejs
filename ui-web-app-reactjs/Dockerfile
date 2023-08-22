@@ -1,6 +1,8 @@
 FROM node:8
 WORKDIR /app
-COPY . .
+COPY package.json package-lock.json ./
 RUN npm install
+VOLUME ["/app/node_modules"]  # Mount a volume for npm cache
+COPY . .
 EXPOSE 8080
 CMD ["npm", "start"]
