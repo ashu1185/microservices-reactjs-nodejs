@@ -2,7 +2,7 @@ pipeline {
     
     agent {
         docker {
-            image 'alpine:latest'
+            image 'abhishekf5/maven-abhishek-docker-agent:v1'
             args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
@@ -42,7 +42,7 @@ pipeline {
 
         stage('Update Deployment File') {
             environment {
-                GIT_REPO_NAME = "microservices-reactjs"
+                GIT_REPO_NAME = "microservices-reactjs-nodejs"
                 GIT_USER_NAME = "ashu1185"
             }
             steps {
