@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     sh 'free -h'  // Display memory usage information
-                    sh 'sudo docker system prune -af'  // Clean up Docker resources
+                    sh 'docker system prune -af'  // Clean up Docker resources
                 }
             }
         }
