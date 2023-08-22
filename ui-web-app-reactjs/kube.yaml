@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "reactjs-ui"
+  namespace: ms
+  labels:
+    app: "reactjs-ui"
+spec:
+  selector:
+    matchLabels:
+      app: "reactjs-ui"
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: "reactjs-ui"
+    spec:
+      containers:
+      - name: "reactjs-ui"
+        image: ashu1185/reactjs-ui:latest
+        ports:
+        - containerPort: 8080
+          name: "reactjs-ui"
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "reactjs-ui"
+  namespace: ms
+spec:
+  selector:
+    app: "reactjs-ui"
+  type: NodePort
+  ports:
+  - name: "reactjs-ui"
+    port: 8080
+    targetPort: 8080
