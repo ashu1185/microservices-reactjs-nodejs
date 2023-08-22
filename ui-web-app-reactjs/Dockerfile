@@ -1,6 +1,6 @@
 FROM node:8
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY . .        
 RUN npm install
 VOLUME ["/app/node_modules"]  # Mount a volume for npm cache
 COPY . .
