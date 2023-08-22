@@ -2,7 +2,7 @@ pipeline {
     
     agent {
         docker {
-            image 'abhishekf5/maven-abhishek-docker-agent:v1'
+            image 'alpine:latest'
             args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
@@ -49,7 +49,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
                         git config user.email "test123@gmail.com"
-                        git config user.name "Ashutosh Tripathi"
+                        git config user.name "ashu"
                         BUILD_NUMBER=${BUILD_NUMBER}
                         sed -i "s/{{BUILD_NUMBER}}/${BUILD_NUMBER}/g" ui-web-app-reactjs/kube.yaml
                         git add ui-web-app-reactjs/kube.yaml
