@@ -42,16 +42,16 @@ pipeline {
 
         stage('Update Deployment File') {
             environment {
-                GIT_REPO_NAME = "microservices-reactjs"
+                GIT_REPO_NAME = "microservices-reactjs-nodejs"
                 GIT_USER_NAME = "ashu1185"
             }
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
                         git config user.email "test123@gmail.com"
-                        git config user.name "ashu"
+                        git config user.name "ashu1185"
                         BUILD_NUMBER=${BUILD_NUMBER}
-                        sed -i "s/{{BUILD_NUMBER}}/${BUILD_NUMBER}/g" ui-web-app-reactjs/kube.yaml
+                        sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" ui-web-app-reactjs/kube.yaml
                         git add ui-web-app-reactjs/kube.yaml
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
