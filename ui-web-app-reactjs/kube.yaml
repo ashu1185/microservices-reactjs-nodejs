@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: "reactjs-uiapp"
-        image: ashu1185/reactjs-uiapp:replaceImageTag
+        image: ashu1185/reactjs-uiapp:latest
         ports:
         - containerPort: 8080
           name: "reactjs-uiapp"
