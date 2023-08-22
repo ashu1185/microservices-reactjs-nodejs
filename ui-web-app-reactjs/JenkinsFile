@@ -55,7 +55,7 @@ pipeline {
             }
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-                    sh '''
+                    sh """
                         git config user.email "test123@gmail.com"
                         git config user.name "ashu1185"
                         BUILD_NUMBER=${BUILD_NUMBER}
@@ -63,7 +63,7 @@ pipeline {
                         git add ui-web-app-reactjs/kube.yaml
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
-                    '''
+                    """
                 }
             }
         }
