@@ -19,7 +19,7 @@ pipeline {
 
         stage('Build and Push Docker Image') {
             environment {                
-                DOCKER_IMAGE = "ashu1185/reactjs-ui:${BUILD_NUMBER}"        
+                DOCKER_IMAGE = "ashu1185/reactjs-uiapp:${BUILD_NUMBER}"        
                 REGISTRY_CREDENTIALS = credentials('docker-cred')
             }
             steps {

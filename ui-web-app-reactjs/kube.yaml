@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "reactjs-ui"
+  name: "reactjs-uiapp"
   namespace: ms
   labels:
-    app: "reactjs-ui"
+    app: "reactjs-uiapp"
 spec:
   selector:
     matchLabels:
-      app: "reactjs-ui"
+      app: "reactjs-uiapp"
   replicas: 1
   strategy:
     rollingUpdate:
@@ -18,27 +18,27 @@ spec:
   template:
     metadata:
       labels:
-        app: "reactjs-ui"
+        app: "reactjs-uiapp"
     spec:
       containers:
-      - name: "reactjs-ui"
-        image: ashu1185/reactjs-ui:replaceImageTag
+      - name: "reactjs-uiapp"
+        image: ashu1185/reactjs-uiapp:replaceImageTag
         ports:
         - containerPort: 8080
-          name: "reactjs-ui"
+          name: "reactjs-uiapp"
 
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: "reactjs-ui"
+  name: "reactjs-uiapp"
   namespace: ms
 spec:
   selector:
-    app: "reactjs-ui"
+    app: "reactjs-uiapp"
   type: NodePort
   ports:
-  - name: "reactjs-ui"
+  - name: "reactjs-uiapp"
     port: 8080
     targetPort: 8080
